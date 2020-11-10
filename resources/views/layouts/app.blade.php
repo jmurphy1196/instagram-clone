@@ -19,6 +19,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Oleo+Script&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Instagram-Icon.png/1025px-Instagram-Icon.png" >
 </head>
 <body>
     <div id="app">
@@ -65,7 +66,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                     <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/profile/{{ Auth::user()->id }}">
+                                      My Profile
+                                    </a>
+                                     <a class="dropdown-item" href="/profile/{{ Auth::user()->id }}/edit">
                                       Edit Profile
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

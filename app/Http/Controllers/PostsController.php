@@ -13,6 +13,18 @@ class PostsController extends Controller
     {
         $this->middleware('auth');
     }
+    public function index()
+    {
+      
+
+        $users = auth()->user()->following()->pluck('profiles.user_id');
+        if(sizeof($users) === 0){
+            $posts = Post::where('user_id', '>', 0)->with('user')->orderBy('created_at', 'DESC')->paginate(5);
+            return view('posts/index', compact('posts'));
+        }
+        $posts = Post::whereIn('user_id', $users)->with('user')->orderBy('created_at', 'DESC')->paginate(5);
+        return view('posts/index', compact('posts'));
+    }
     public function create()
     {
         return view("posts/create");
